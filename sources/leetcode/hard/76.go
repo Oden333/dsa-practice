@@ -5,16 +5,27 @@ import (
 	"strings"
 )
 
-func minWindow(s string, t string) string {
+// https://www.youtube.com/watch?v=jSto0O4AJbM
+
+func minWindow1(s string, t string) string { // O(m+n)
 	tmap := make(map[rune]int)
 	for _, r := range []rune(t) {
 		tmap[r]++
 	}
 
+	tmp := []rune(s)
+	copy := maps.Clone(tmap)
+	var l, r = 0, len(tmp) - 1
+	for l < r {
+		if _, ok := copy[tmp[l]]; !ok {
+			continue
+		}
+	}
+
 	return ""
 }
 
-func minWindow_slow(s string, t string) string {
+func minWindow(s string, t string) string {
 	tmap := make(map[rune]int)
 	for _, r := range []rune(t) {
 		tmap[r]++

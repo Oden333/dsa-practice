@@ -1,1 +1,7 @@
-[]
+[
+  {
+    "key": "ctrl+shift+g",
+    "command": "commitMsg.autofill",
+    "when": "gitlens:enabled && editorTextFocus"
+  }
+]

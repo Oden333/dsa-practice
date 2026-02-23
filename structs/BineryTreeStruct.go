@@ -16,7 +16,6 @@ type TreeNode struct {
 }
 
 func Fill(values []int) *TreeNode {
-
 	var traverseAndFill func(root *TreeNode, value int) *TreeNode
 
 	traverseAndFill = func(root *TreeNode, value int) *TreeNode {

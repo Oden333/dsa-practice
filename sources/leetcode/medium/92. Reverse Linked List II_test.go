@@ -14,18 +14,18 @@ func Test_reverseBetween(t *testing.T) {
 		right int
 		want  *q.ListNode
 	}{
-		// {
-		// 	head:  q.BuildList([]int{1, 2, 3, 4, 5}),
-		// 	left:  2,
-		// 	right: 4,
-		// 	want:  q.BuildList([]int{1, 4, 3, 2, 5}),
-		// },
-		// {
-		// 	head:  q.BuildList([]int{5}),
-		// 	left:  1,
-		// 	right: 1,
-		// 	want:  q.BuildList([]int{5}),
-		// },
+		{
+			head:  q.BuildList([]int{1, 2, 3, 4, 5}),
+			left:  2,
+			right: 4,
+			want:  q.BuildList([]int{1, 4, 3, 2, 5}),
+		},
+		{
+			head:  q.BuildList([]int{5}),
+			left:  1,
+			right: 1,
+			want:  q.BuildList([]int{5}),
+		},
 		{
 			head:  q.BuildList([]int{3, 5}),
 			left:  1,

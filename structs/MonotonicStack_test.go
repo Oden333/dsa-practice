@@ -72,6 +72,37 @@ func TestNextGreaterElement(t *testing.T) {
 		})
 	}
 }
+func TestNextLowerElement(t *testing.T) {
+	tests := []struct {
+		name     string
+		input    []int
+		expected []int
+	}{
+		{
+			input:    []int{2, 1, 2, 4, 3},
+			expected: []int{1, -1, -1, 3, -1},
+		},
+
+		{
+			input:    []int{2, 1, 5, 6, 2, 3},
+			expected: []int{1, -1, 2, 2, -1, -1},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			inputCopy := make([]int, len(tt.input))
+			copy(inputCopy, tt.input)
+
+			got := nextLowerElement(inputCopy)
+
+			if fmt.Sprintf("%v", got) != fmt.Sprintf("%v", tt.expected) {
+				t.Errorf("nextLowerElement() = %v, want %v", got, tt.expected)
+			}
+		})
+	}
+}
+
 func BenchmarkNextGreaterElement(b *testing.B) {
 	// Генерируем массив разного размера
 	sizes := []int{100, 1000, 10000}

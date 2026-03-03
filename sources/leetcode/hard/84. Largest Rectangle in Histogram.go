@@ -10,10 +10,11 @@ func largestRectangleArea(n []int) int {
 		pse, nse []int
 	)
 
-	nse = nextSmallerNumber(n)
-	pse = prevSmallerNumber(n)
+	nse = nextSmallerNumber(n) // считаем next smaller element, где будут лежать id некст уменьшенного элемента.
+	pse = prevSmallerNumber(n) // считаем prev smaller element, где будут лежать id предыдущего уменьшенного элемента.
 
 	for i := range len(n) {
+		// в формуле берём эти индексы, и сдвигаем nse влево, а pse вправо. Так, получим неуменьшаюшийся относительно h[i] прямоугольник, и проверим все варианты площадей
 		if tmp := (1 + (nse[i] - 1) - (pse[i] + 1)) * n[i]; tmp > max {
 			max = tmp
 		}

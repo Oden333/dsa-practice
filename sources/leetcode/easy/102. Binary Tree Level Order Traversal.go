@@ -1,8 +1,8 @@
 package easy
 
 import (
+	. "dsa/structs"
 	"fmt"
-	. "leetcode/structs"
 )
 
 func LevelOrder(root *TreeNode) [][]int {

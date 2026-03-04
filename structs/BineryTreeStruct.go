@@ -55,12 +55,9 @@ func MapValueToCount(root *TreeNode) map[int]int {
 		if root == nil {
 			return
 		}
-
-		if root != nil {
-			counts[root.Val]++
-			mapping(root.Left)
-			mapping(root.Right)
-		}
+		counts[root.Val]++
+		mapping(root.Left)
+		mapping(root.Right)
 	}
 	mapping(root)
 	return counts

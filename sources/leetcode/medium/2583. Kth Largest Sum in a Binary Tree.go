@@ -1,7 +1,7 @@
 package medium
 
 import (
-	. "leetcode/structs"
+	. "dsa/structs"
 	"slices"
 )
 

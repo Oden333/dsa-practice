@@ -1,7 +1,7 @@
 package easy
 
 import (
-	q "leetcode/structs"
+	q "dsa/structs"
 	"testing"
 )
 

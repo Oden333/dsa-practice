@@ -1,7 +1,7 @@
 package medium
 
 import (
-	q "leetcode/structs"
+	q "dsa/structs"
 	"testing"
 )
 

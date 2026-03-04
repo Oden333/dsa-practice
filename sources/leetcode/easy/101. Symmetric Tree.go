@@ -1,6 +1,6 @@
 package easy
 
-import . "leetcode/structs"
+import . "dsa/structs"
 
 func IsSymmetric(root *TreeNode) bool {
 	if root == nil {

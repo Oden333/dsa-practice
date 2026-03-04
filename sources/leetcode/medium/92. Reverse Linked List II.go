@@ -1,7 +1,7 @@
 package medium
 
 import (
-	. "leetcode/structs"
+	. "dsa/structs"
 )
 
 func reverseBetween(head *ListNode, left int, right int) *ListNode {

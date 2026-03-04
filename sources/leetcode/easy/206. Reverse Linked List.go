@@ -1,6 +1,6 @@
 package easy
 
-import . "leetcode/structs"
+import . "dsa/structs"
 
 func reverseList(cur *ListNode) *ListNode {
 	if cur == nil {

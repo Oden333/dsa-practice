@@ -1,7 +1,7 @@
 package easy
 
 import (
-	. "leetcode/structs"
+	. "dsa/structs"
 )
 
 func inorderTraversal(root *TreeNode) []int {

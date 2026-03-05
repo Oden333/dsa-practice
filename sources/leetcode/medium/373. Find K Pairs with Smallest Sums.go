@@ -3,46 +3,40 @@ package medium
 import "container/heap"
 
 func kSmallestPairs(nums1 []int, nums2 []int, k int) [][]int {
-	h1 := new(ksp)
-	for _, v := range nums1 {
-		heap.Push(h1, v)
-	}
-
-	h2 := new(ksp)
-	for _, v := range nums2 {
-		heap.Push(h2, v)
+	h := new(ksp)
+	for _, v1 := range nums1 {
+		for _, v2 := range nums2 {
+			heap.Push(h, [2]int{v1, v2})
+		}
 	}
 
 	res := make([][]int, k)
 	for i := range k {
-		res[i] = []int{heap.Pop(h1).(int), heap.Pop(h2).(int)}
+		tmp, _ := heap.Pop(h).([2]int)
+		res[i] = tmp[:]
 	}
 
 	return res
 }
 
-/*
-type Interface interface { // size=16 (0x10)
-
-	    sort.Interface
-	    Push(x any) // add x as element Len()
-	    Pop() any   // remove and return element Len() - 1.
-	}
-
-func (sort.Interface) Len() int
-func (sort.Interface) Less(i int, j int) bool
-func (sort.Interface) Swap(i int, j int)
-*/
-
 // min heap
-type ksp []int
+type ksp [][2]int
 
 func (h ksp) Len() int {
 	return len(h)
 }
 
 func (h ksp) Less(i int, j int) bool {
-	return h[i] <= h[j]
+	return h[i][0]+h[i][1] < h[j][0]+h[j][1]
+
+	// switch {
+	// case (h[i][0] < h[j][0]):
+	// 	return true
+	// case (h[i][0] == h[j][0]):
+	// 	return (h[i][1] <= h[j][1])
+	// default:
+	// 	return false
+	// }
 }
 
 func (h ksp) Swap(i int, j int) {
@@ -50,7 +44,7 @@ func (h ksp) Swap(i int, j int) {
 }
 
 func (h *ksp) Push(x any) {
-	(*h) = append((*h), x.(int))
+	(*h) = append((*h), x.([2]int))
 }
 
 func (h *ksp) Pop() any {

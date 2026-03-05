@@ -28,6 +28,13 @@ func Test_kSmallestPairs(t *testing.T) {
 			k:     2,
 			want:  [][]int{{1, 1}, {1, 1}},
 		},
+
+		{
+			nums1: []int{1, 2, 4, 5, 6},
+			nums2: []int{3, 5, 7, 9},
+			k:     3,
+			want:  [][]int{{1, 3}, {2, 3}, {1, 5}},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

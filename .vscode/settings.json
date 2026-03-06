@@ -1,7 +1,22 @@
 {
+  // "go.logging.level": "verbose", // A setting for tracing extension's activity
   "go.toolsEnvVars": {
-    "GOTESTS_TEMPLATE_DIR": "${workspaceFolder}/.vscode/gotests/templates"
+    // "GOTESTS_TEMPLATE_DIR": "${workspaceFolder}/.vscode/gotests/templates"
   },
+
+  "go.generateTestsFlags": [
+    // "-use_go_cmp",
+
+    // "-template_dir",
+    // "${workspaceFolder}/.vscode/gotests/templates/default",
+
+    "-template",
+    "testify",
+
+    "-w",
+    "-i",
+    "-parallel"
+  ],
 
   "git.postCommitCommand": "push",
 

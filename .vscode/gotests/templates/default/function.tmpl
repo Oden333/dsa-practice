@@ -76,9 +76,7 @@ func {{.TestName}}(t *testing.T) {
 		},
 		{{- end}}
 		{{- else}}
-			{
-
-			},
+		// TODO: Add test cases.
 		{{- end}}
 	}
 	for {{if (or .Subtests (not .IsNaked))}} {{if .Named}}name{{else}}_{{end}}, tt := {{end}} range tests {

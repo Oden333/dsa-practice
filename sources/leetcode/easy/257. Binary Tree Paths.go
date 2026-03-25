@@ -2,6 +2,7 @@ package easy
 
 import (
 	. "dsa/structs"
+	"slices"
 	"strconv"
 	"strings"
 )
@@ -9,31 +10,35 @@ import (
 func binaryTreePaths(root *TreeNode) []string {
 	res := make([]string, 0)
 
-	var trav func(node *TreeNode, path []string)
-	trav = func(node *TreeNode, path []string) {
+	var trav func(node *TreeNode, path []int)
+	trav = func(node *TreeNode, path []int) {
 		if node == nil {
 			return
 		}
 
-		if node.Val != -101 { // nil
-			path = append(path, strconv.Itoa(node.Val))
-		}
-
+		curPath := append(path, node.Val)
 		if node.Left == nil && node.Right == nil {
-			res = append(res, strings.Join(path, "->"))
+			res = append(res, pathConvert(curPath))
 			return
 		}
 
-		if node.Left != nil {
-			trav(node.Left, path)
-		}
-
-		if node.Right != nil {
-			trav(node.Right, path)
-		}
+		trav(node.Left, (slices.Clone(curPath)))
+		trav(node.Right, (slices.Clone(curPath)))
 	}
 
-	trav(root, make([]string, 0))
+	trav(root, []int{})
 
 	return res
+}
+
+func pathConvert(res []int) string {
+	b := strings.Builder{}
+	for i, v := range res {
+		if i != 0 {
+			b.WriteString("->")
+		}
+		b.WriteString(strconv.Itoa(v))
+	}
+
+	return b.String()
 }

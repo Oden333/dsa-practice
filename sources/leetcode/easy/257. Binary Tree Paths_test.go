@@ -28,7 +28,7 @@ func Test_binaryTreePaths(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			assert.Equalf(t, tt.want, binaryTreePaths(tt.args.root), "binaryTreePaths(%v)", tt.args.root)
+			assert.Equalf(t, tt.want, binaryTreePaths(tt.args.root), "binaryTreePaths(%+v)", tt.args.root)
 		})
 	}
 }

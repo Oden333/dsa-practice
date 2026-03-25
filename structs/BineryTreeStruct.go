@@ -7,9 +7,14 @@ import (
 	"strconv"
 )
 
-// Null — маркер отсутствующего узла в слайсе для инициализации дерева.
-// Используем MinInt, т.к. в задачах LeetCode значения обычно в диапазоне [-100, 100].
-var Null = math.MinInt
+var (
+	// Null — маркер отсутствующего узла в слайсе для инициализации дерева.
+	// Используем MinInt, т.к. в задачах LeetCode значения обычно в диапазоне [-100, 100].
+	Null = math.MinInt
+
+	// EmptyVal - маркер отсутствующего узла в дереве для принта
+	EmptyVal = "-"
+)
 
 // TreeNode — узел бинарного дерева.
 type TreeNode struct {
@@ -20,27 +25,25 @@ type TreeNode struct {
 // Fill строит BST из слайса значений путём последовательной вставки.
 // Fill использует логику BST: value >= root.Val → вправо, иначе влево.
 func Fill(values []int) *TreeNode {
-	var traverseAndFill func(root *TreeNode, value int) *TreeNode
-
-	traverseAndFill = func(root *TreeNode, value int) *TreeNode {
+	var traverseAndFill func(node *TreeNode, value int) *TreeNode
+	traverseAndFill = func(node *TreeNode, value int) *TreeNode {
 		// Пропускаем маркеры nil-узлов
 		if value == Null {
-			return root
+			return node
 		}
 
 		// Создаём новый узел, если дошли до nil
-		if root == nil {
+		if node == nil {
 			return &TreeNode{Val: value}
 		}
 
-		// ❗ Ключевое исправление: else if, чтобы не вставлять дубликат в обе ветки
-		if value >= root.Val {
-			root.Right = traverseAndFill(root.Right, value)
-		} else if value <= root.Val {
-			root.Left = traverseAndFill(root.Left, value)
+		if value >= node.Val {
+			node.Right = traverseAndFill(node.Right, value)
+		} else if value <= node.Val {
+			node.Left = traverseAndFill(node.Left, value)
 		}
 
-		return root
+		return node
 	}
 
 	var root *TreeNode
@@ -51,17 +54,14 @@ func Fill(values []int) *TreeNode {
 }
 
 // BuildTree создаёт дерево из level-order слайса
-// Пример: [1,2,3,nil,5] →
-//
-//		1
-//
-//	  / \
-//
-//	 2   3
-//
-//	  \
-//
-//	   5
+/*
+Пример: [1,2,3,nil,5] →
+	  1
+	 / \
+	2   3
+	 \
+	  5
+*/
 func BuildTree(vals []int) *TreeNode {
 	if len(vals) == 0 || vals[0] == Null {
 		return nil
@@ -145,7 +145,7 @@ func NodeMapping(root *TreeNode) {
 // nodeStringConversion конвертирует узел в строку для печати.
 func nodeStringConversion(node *TreeNode) string {
 	if node == nil {
-		return "-"
+		return EmptyVal
 	}
 	return strconv.Itoa(node.Val)
 }

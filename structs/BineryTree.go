@@ -22,9 +22,16 @@ type TreeNode struct {
 	Val         int
 }
 
-// Fill строит BST из слайса значений путём последовательной вставки.
-// Fill использует логику BST: value >= root.Val → вправо, иначе влево.
-func Fill(values []int) *TreeNode {
+//? Binary Tree Traversal involves visiting all the nodes in a binary tree in a specific order.
+
+//* PreOrder: root -> left -> right
+//* InOrder: left -> root -> right
+//* PostOrder: left -> right -> root
+
+// FillTree строит BST из слайса значений путём последовательной вставки.
+//
+// FillTree использует логику BST: value >= root.Val → вправо, иначе влево.
+func FillTree(values []int) *TreeNode {
 	var traverseAndFill func(node *TreeNode, value int) *TreeNode
 	traverseAndFill = func(node *TreeNode, value int) *TreeNode {
 		// Пропускаем маркеры nil-узлов
